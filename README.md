@@ -111,17 +111,17 @@ query.where({email: 'matt.insler@gmail.com'});
 ```javascript
 // skip
 User.skip(5);
-User.where(...).skip(5);
+User.where({...}).skip(5);
 
 // limit
 
 // fields
 User.fields({name: 1, address});        // only include name and address
-User.where(...).fields({timestamp: 0}); // omit timestamp
+User.where({...}).fields({timestamp: 0}); // omit timestamp
 
 // sort
 User.sort({name: 1});             // sort by name ascending
-User.where(...).sort({name: -1}); // sort by name descending
+User.where({...}).sort({name: -1}); // sort by name descending
 ```
 
 #### Fetching data from a query
@@ -131,7 +131,7 @@ User.where(...).sort({name: -1}); // sort by name descending
 User.first().then(function(user) {
 
 });
-User.where(...).then(function(user) {
+User.where({...}).then(function(user) {
 
 });
 
@@ -139,19 +139,19 @@ User.where(...).then(function(user) {
 User.array().then(function(users) {
 
 });
-User.where(...).array().then(function(users) {
+User.where({...}).array().then(function(users) {
 
 });
 
 // Create a cursor for this query
 var cursor = User.cursor();
-var cursor = User.where(...).cursor();
+var cursor = User.where({...}).cursor();
 
 // Count the documents matching this query
 User.count().then(function(count) {
 
 });
-User.where(...).count().then(function(count) {
+User.where({...}).count().then(function(count) {
 
 });
 
@@ -159,7 +159,7 @@ User.where(...).count().then(function(count) {
 User.distinct('name').then(function(distinctNames) {
 
 });
-User.where(...).distinct('name').then(function(distinctNames) {
+User.where({...}).distinct('name').then(function(distinctNames) {
 
 });
 ```
@@ -168,22 +168,26 @@ User.where(...).distinct('name').then(function(distinctNames) {
 
 ```javascript
 // Insert a document, will not update
-User.create(...).then(function() {
+User.create({...}).then(function(savedDocument) {
+
+);
+// Insert multiple documents, will not update
+User.create([{...}, {...}]).then(function(arrayOfSavedDocuments) {
 
 );
 
 // Save a document, doing an update if the document has an '_id' field, and an insert if not
-User.save(...).then(function() {
+User.save({...}).then(function(savedDocument) {
 
 });
 
 // Update a single document matching the query
 // options: http://mongodb.github.io/node-mongodb-native/1.4/api-generated/collection.html#update
-User.update(query, update, options).then(function() {
-
+User.update(query, update, options).then(function(numDocumentsChanged, details) {
+  // check details.updatedExisting to see if objects were inserted or updated (when using {upsert: true})
 });
-// Update a single document matching the query from the where(...)
-User.where(...).update(update, options).then(function() {
+// Update a single document matching the query from the where({...})
+User.where({...}).update(update, options).then(function(numDocumentsChanged, details) {
 
 });
 ```
@@ -195,7 +199,7 @@ User.where(...).update(update, options).then(function() {
 User.remove();
 
 // Remove all documents matching this query
-User.where(...).remove().then(function() {
+User.where({...}).remove().then(function(numDocumentsRemoved) {
 
 });
 ```
