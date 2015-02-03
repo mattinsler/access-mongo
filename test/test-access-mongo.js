@@ -1,3 +1,4 @@
+var q = require('q');
 var assert = require('assert');
 var AccessMongo, AccessMongo2;
 
@@ -12,8 +13,10 @@ describe('AccessMongo', function() {
   });
   
   after(function() {
-    AccessMongo.disconnect();
-    AccessMongo2.disconnect();
+    return q.all([
+      AccessMongo.disconnect(),
+      AccessMongo2.disconnect()
+    ]);
   });
   
   it('can accept AccessMongo connections', function() {

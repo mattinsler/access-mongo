@@ -9,11 +9,11 @@ describe.skip('NEDB Provider', function() {
     this.cleanup = function() {
       del.sync(DB_PATH);
     };
-    
+
     this.setup = function() {
       return AccessMongo.connect(DB_PATH);
     };
   });
-  
+
   shared.interfaceTest();
 });
