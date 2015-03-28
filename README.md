@@ -190,6 +190,11 @@ User.update(query, update, options).then(function(numDocumentsChanged, details) 
 User.where({...}).update(update, options).then(function(numDocumentsChanged, details) {
 
 });
+
+
+User.where({...}).firstAndUpdate(update, options).then(function(fetchedDocument) {
+  
+});
 ```
 
 ### Removing documents
