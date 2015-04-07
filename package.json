@@ -1,7 +1,7 @@
 {
   "name": "access-mongo",
   "description": "Simple MongoDB wrapper",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/mattinsler/access-mongo",
   "author": {
     "name": "Matt Insler",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "lodash.isplainobject": "^3.0.0",
-    "mongodb": "^1.4.26",
+    "mongodb": "1.4.x",
     "nedb": "^1.0.2",
     "q": "^1.1.2"
   },
