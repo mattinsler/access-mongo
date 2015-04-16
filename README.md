@@ -32,6 +32,14 @@ AccessMongo.connect({
   var BarUser = AccessMongo.createModel('users', {connection: 'foo'});
 });
 
+// override query parameters of all connections
+AccessMongo.connect({
+  foo: 'mongodb://foo:bar@hello.com:1234/mydb',
+  bar: 'mongodb://foo:bar@yoyo.foo.bar:1234/otherdb'
+}, {
+  maxPoolSize: 3
+});
+
 // create an nedb database
 AccessMongo.connect('test.db').then(function() {
   var User = AccessMongo.createModel('users');
