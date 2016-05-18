@@ -17,7 +17,7 @@ var AccessMongo = require('access-mongo');
 AccessMongo.connect('mongodb://foo:bar@hello.com:1234/mydb').then(function() {
   // create a model for collection users
   var User = AccessMongo.createModel('users');
-  
+
   User.where({name: 'Matt'}).then(function(user) {
     console.log(user);
   });
@@ -43,7 +43,7 @@ AccessMongo.connect({
 // create an nedb database
 AccessMongo.connect('test.db').then(function() {
   var User = AccessMongo.createModel('users');
-  
+
   User.where({name: 'Matt'}).then(function(user) {
     console.log(user);
   });
@@ -201,7 +201,7 @@ User.where({...}).update(update, options).then(function(numDocumentsChanged, det
 
 
 User.where({...}).firstAndUpdate(update, options).then(function(fetchedDocument) {
-  
+
 });
 ```
 
@@ -210,6 +210,9 @@ User.where({...}).firstAndUpdate(update, options).then(function(fetchedDocument)
 ```javascript
 // To prevent you from removing all documents by accident, this will throw an Error
 User.remove();
+
+// To remove all documents you can override this failsafe
+User.remove({ override: true });
 
 // Remove all documents matching this query
 User.where({...}).remove().then(function(numDocumentsRemoved) {
